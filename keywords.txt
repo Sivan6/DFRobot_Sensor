@@ -6,20 +6,19 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-DFRobot_ZXW	KEYWORD1
-Serial	KEYWORD1
+DFRobot_Sensor	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
 
 begin	KEYWORD2
-print	KEYWORD2
-println	KEYWORD2
-getName	KEYWORD2
-getAge	KEYWORD2
-setName	KEYWORD2
-setAge	KEYWORD2
+soundStrengthDB	KEYWORD2
+lightStrengthLux	KEYWORD2
+switchMode	KEYWORD2
+write_bytes	KEYWORD2
+setLED	KEYWORD2
+
 
 #######################################
 # Instances (KEYWORD2)

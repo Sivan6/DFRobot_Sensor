@@ -14,7 +14,7 @@
  * @https://github.com/ouki-wang/DFRobot_Sensor
  */
 //#include <DFRobot_Sensor.h>
-DFRobot_ZXW_IIC sensor(&Wire, eLowPower);
+DFRobot_Sensor_IIC sensor(&Wire, eLowPower);
 //DFRobot_Sensor_IIC sensor;//这样定义会使用默认参数，&Wire  eNomalPrecision+eNormalSpeed+eNormalPower
 
 void setup(void)
