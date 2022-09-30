@@ -68,7 +68,7 @@ void DFRobot_ZXW_IIC::writeReg(uint8_t reg,void* pBuf,size_t size)
 	_pWire->endTransmission();
 }
 
-void DFRobot_ZXW_IIC::readReg(uint8_t reg,void* pBuf,size_t size)
+uint8_t DFRobot_ZXW_IIC::readReg(uint8_t reg,void* pBuf,size_t size)
 {
 	if(pBuf == BULL)
 	{
@@ -90,7 +90,7 @@ void DFRobot_ZXW_IIC::readReg(uint8_t reg,void* pBuf,size_t size)
 	return size;
 }
 
-void DFRobot_ZXW_SPI::writeReg(uint8_t reg,voif* pBuf,size_t size)
+void DFRobot_ZXW_SPI::writeReg(uint8_t reg,void* pBuf,size_t size)
 {
 	if(pBuf == NULL)
 	{
@@ -133,19 +133,22 @@ void DFRobot_ZXW_SPI::readReg(uint8_t reg,void* pBuf,size_t size)
 
 uint16_t DFRobot_ZXW::soundStrengthDB(void)
 {
-	sData_t data;
+	//sData_t data;
+	uint8_t data;
 	readReg(SENSOR_ADDR_DATA,&data,sizeof(data));
 	DBG("sound is");
 	DBG(data.sound);
-	return data.sound<<3;
+	return (data>>4)<<3;
 }
 
 uint16_t DFRobot_ZXW::lightStrengthLux(void)
 {
-	sData_t data;
+	//sData_t data;
+	uint8_t data;
 	readReg(SENSOR_ADDR_DATA,&data,sizeof(data));
 	DBG("light is");
 	DBG(data.light);
+	data&0x0f;
 	return data.light*10000;
 }
 
@@ -173,5 +176,5 @@ void DFRobot_ZXW::setLED(uint8_t r,uint8_t g,uint8_t b)
 void DFRobot_ZXW::setLED(uint16_t color)
 {
 	
-	writeReg(SENSOR_ADDR_LED,&color,1);
+	writeReg(SENSOR_ADDR_LED,&color,2);
 }

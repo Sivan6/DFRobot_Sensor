@@ -8,10 +8,10 @@
  * @n 从寄存器3 读取数据，读到的是芯片版本0xDF
  * @copyright	Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
  * @licence     The MIT License (MIT)
- * @author [Ouki](ouki.wang@dfrobot.com)
+ * @author [ZXW](924063564@qq.com)
  * @version  V1.0
  * @date  2019-07-13
- * @https://github.com/ouki-wang/DFRobot_Sensor
+ * @https://github.com/Sivan6/DFRobot_ZXW
  */
 
 #ifndef __DFROBOT_ZXW_H_
@@ -22,8 +22,12 @@
 #include <SPI.h>
 
 #define ENABLE_DBG //========================================
-#define DBG(...) {Serial.print(__FUNCTION__);Serial.print("()");Serial.print(__LINE__);Serial.println(__VA_ARGS__);}
 
+#ifdef ENABLE_DBG
+	#define DBG(...) {Serial.print(__FUNCTION__);Serial.print("()");Serial.print(__LINE__);Serial.println(__VA_ARGS__);}
+#else 
+	#define DBG(...)
+#endif
 #define DFRobot_Sensor_IIC_ADDR 0x66 //芯片IIC地址，无变化地址功能
 #define DFRobot_Sensor_ID 0xDF //芯片IIC地址，无变化地址功能
 
@@ -108,7 +112,7 @@ public:
 	
 public:
 	DFRobot_ZXW(uint8_t mode);
-	virtual int begin(void)=0;//=====
+	virtual int begin(void);//=====
 	uint16_t soundStrengthDB(void);
 	uint16_t lightStrengthLux(void);
 	uint16_t switchMode(uint8_t mode);
